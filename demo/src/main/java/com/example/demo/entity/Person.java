@@ -2,9 +2,12 @@ package com.example.demo.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,6 +25,11 @@ public class Person {
 	@Column(name="fid", nullable=false)
 	private Integer fid;
 
+	@OneToOne(cascade= {}, fetch=FetchType.LAZY)
+	@JoinColumn(name="fid", insertable=false, updatable=false)
+	private Family family;
+	
+	
 	public Integer getId() {
 		return id;
 	}
